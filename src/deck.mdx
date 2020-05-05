@@ -1,6 +1,9 @@
 import { Head, Header, Footer } from "mdx-deck";
+import Highlighter from "react-syntax-highlighter";
 import { Notes, Split, Horizontal, FullScreenCode } from "mdx-deck";
 import { Invert } from "mdx-deck";
+import { CodeSurfer, CodeSurferColumns, Step } from "code-surfer";
+import { nightOwl } from "@code-surfer/themes";
 
 import "./styles/deck.css";
 
@@ -46,12 +49,286 @@ ci/cd lambda preso
 
 ---
 
-
 <TableOfContents title="Overview" data={presentation.steps} />
 
 ---
 
-## cicd
+## CI/CD for lambda functions
+
+---
+
+## Introduction
+
+---
+
+First, what is **CI/CD**?
+
+---
+
+<Appear>
+  <h2>Continuous Integration</h2>
+  <h2>Continuous Delivery</h2>
+</Appear>
+
+---
+
+## Continuous Integration
+
+---
+
+Continuous Integration is the practice of creating automated builds and tests every time we commit a change into our repository.
+
+---
+
+Of course, this means we need to write tests
+
+---
+
+Let's talk about writing tests for lambda functions
+
+---
+
+<small>I hope you're familiar with TypeScript...</small>
+
+---
+
+### Lambda function to tell us the time
+
+---
+
+```bash
+npm init -y
+npm install --save-dev typescript @types/node
+./node_modules/.bin/tsc --init
+```
+
+---
+
+```json
+{
+  "name": "time",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^13.13.4",
+    "typescript": "^3.8.3"
+  }
+}
+```
+
+---
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node"],
+    "strict": true,
+    "esModuleInterop": true,
+    "inlineSourceMap": true
+  }
+}
+```
+
+---
+
+```bash
+npm install --save-dev aws-lambda @types/aws-lambda
+npm install --save-dev axios @types/axios
+mkdir src
+touch src/index.ts
+```
+
+---
+
+```typescript
+// src/index.ts
+const handler = async (event: any, context: any) => {
+  // TODO
+};
+
+export default handler;
+```
+
+---
+
+```typescript
+import {
+  APIGatewayEvent,
+  APIGatewayProxyResult,
+  APIGatewayProxyEvent,
+} from "aws-lambda";
+import axios from "axios";
+
+// src/index.ts
+export const handler = async (
+  event: APIGatewayEvent
+): Promise<APIGatewayProxyResult> => {
+  try {
+    return await handle(event);
+  } catch (e) {
+    console.error(e);
+    const errMsg =
+      typeof e.message === "string" && e.message.startsWith("ClientError:")
+        ? e.message
+        : "InternalServerError";
+    return {
+      statusCode: 400,
+      body: errMsg,
+    };
+  }
+};
+
+export default handler;
+```
+
+---
+
+```typescript
+// ...
+const handle = async (
+  event: APIGatewayProxyEvent
+): Promise<APIGatewayProxyResult> => {
+  const params = event.queryStringParameters;
+
+  if (params == null) {
+    throw new Error(`Parameters cannot be null`);
+  }
+
+  const type = params.type || "states";
+  const url = `https://corona.lmao.ninja/v2/${type}`;
+  const [err, response] = await axios.get(url);
+
+  if (err) {
+    throw new Error(`API is down :( Try again later`);
+  }
+
+  let data: any = {};
+  try {
+    data = response.json();
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        data,
+      }),
+    };
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+```
+
+---
+
+### Deploy it
+
+---
+
+```bash
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+```
+
+---
+
+```bash
+aws configure --profile deployer
+```
+
+---
+
+```bash
+npm install --save-dev aws-cdk
+npm install --save-dev @aws-cdk/core @aws-cdk/aws-lambda
+npm install --save @aws-cdk/aws-apigateway @aws-cdk/aws-iam
+```
+
+---
+
+```bash
+mkdir deployment && cd $_
+../node_modules/.bin/cdk init --language typescript app
+```
+
+---
+
+```typescript
+export class DeploymentStack extends cdk.Stack {
+  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
+
+    // The code that defines your stack goes here
+  }
+}
+```
+
+---
+
+### Working with the cdk
+
+---
+
+```bash
+./node_modules/.bin/cdk --profile [profile-name] bootstrap
+```
+
+---
+
+### Cloudformation (ew)
+
+```bash
+./node_modules/.bin/cdk --profile [profile-name] synth
+```
+
+---
+
+### Deployment
+
+```bash
+./node_modules/.bin/cdk --profile [profile-name] deploy
+```
+
+---
+
+import deploy from "./img/deploy.png";
+
+<Image
+  src={deploy}
+  alt="Deployment"
+  style={{ height: "540px", width: "1024px" }}
+/>
+
+---
+
+import deploy2 from "./img/deploy2.png";
+
+<Image
+  src={deploy2}
+  alt="Deployment"
+  style={{ height: "540px", width: "1024px" }}
+/>
+
+---
+
+<CodeSurfer theme={nightOwl}>
+
+```ts 1:5 file="../time/deployment/lib/deployment-stack.ts"
+```
+
+</CodeSurfer>
 
 ---
 

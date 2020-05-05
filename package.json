@@ -6,7 +6,7 @@
   "presentation": {
     "title": "cicd",
     "subtitle": "ci/cd lambda preso",
-    "author": "Ari Lerner &lt;me@ari.io&gt;",
+    "author": "Ari Lerner",
     "steps": [
       {
         "label": "Introduction",
@@ -30,11 +30,11 @@
   "license": "ISC",
   "devDependencies": {
     "capture-website-cli": "^0.6.0",
-    "gatsby": "^2.20.18",
+    "gatsby": "^2.21.13",
     "mdx-deck": "^4.1.1",
     "patch-package": "^6.2.2",
     "pptxgenjs": "^3.1.1",
-    "puppeteer": "^2.1.1",
+    "puppeteer": "^3.0.2",
     "tempy": "^0.5.0",
     "theme-ui": "^0.3.1",
     "website-pdf": "^4.1.0"
@@ -43,13 +43,14 @@
     "@mdx-deck/gatsby-plugin": "^4.1.1",
     "@mdx-deck/themes": "^4.1.0",
     "chalk": "^4.0.0",
+    "code-surfer": "^3.1.1",
     "fs-extra": "^9.0.0",
     "gatsby-plugin-compile-es6-packages": "^2.1.0",
-    "gatsby-source-filesystem": "^2.2.2",
+    "gatsby-source-filesystem": "^2.3.1",
     "mdx-code": "^2.0.0",
     "mdx-deck-code-surfer": "^0.5.5",
     "mdx-deck-live-code": "^1.0.1",
-    "raw-loader": "^4.0.0",
+    "raw-loader": "^4.0.1",
     "serve-handler": "^6.1.2",
     "styled-components": "^5.1.0",
     "styled-system": "^5.1.5"

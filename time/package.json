@@ -1,0 +1,36 @@
+{
+  "name": "time",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf ./dist && ./node_modules/.bin/tsc",
+    "postbuild": "cp package.json dist/package.json && cd dist && npm install --only=production",
+    "deploy": "npm run build && npm run deploy:api",
+    "deploy:api": "cd deployment && ./node_modules/.bin/cdk --profile demo-deployer deploy",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@aws-cdk/aws-lambda": "^1.37.0",
+    "@aws-cdk/core": "^1.37.0",
+    "@types/aws-lambda": "^8.10.51",
+    "@types/axios": "^0.14.0",
+    "@types/jest": "^25.2.1",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.13.4",
+    "aws-cdk": "^1.37.0",
+    "aws-lambda": "^1.0.6",
+    "jest": "^26.0.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-codepipeline": "^1.37.0",
+    "@aws-cdk/aws-codepipeline-actions": "^1.37.0",
+    "axios": "^0.19.2"
+  }
+}
