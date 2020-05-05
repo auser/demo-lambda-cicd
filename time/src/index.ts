@@ -52,7 +52,7 @@ const handle = async (
   const type = params.type || "states";
   const url = `https://corona.lmao.ninja/v2/${type}`;
   try {
-    const resp = await axios({ url, method: "GET" });
+    const resp = await axios.get(url);
     const data = resp.data;
 
     return {

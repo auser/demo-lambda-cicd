@@ -64,7 +64,9 @@ describe("lambdaService", () => {
 
     beforeEach(() => {
       const mocked = jest.spyOn(axios, "get");
-      mocked.mockImplementation(() => Promise.resolve(data));
+      mocked.mockImplementation(() =>
+        Promise.resolve({ statusCode: 200, data })
+      );
     });
 
     it("returns 200 with data", async () => {
