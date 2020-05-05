@@ -1,0 +1,58 @@
+import { Head, Header, Footer } from "mdx-deck";
+import { Notes, Split, Horizontal, FullScreenCode } from "mdx-deck";
+import { Invert } from "mdx-deck";
+
+import "./styles/deck.css";
+
+import { presentation } from "../package.json";
+import { Layout } from "./components/Layout";
+import { Cover } from "./components/Cover";
+import { Timeline } from "./components/Timeline";
+import { TableOfContents } from "./components/TableOfContents";
+import { Thanks } from "./components/Thanks";
+import { Image } from "./components/Image";
+import { ZeroPadding } from "./components/ZeroPadding";
+import { BackgroundImage } from "./components/BackgroundImage";
+import myTheme from "./theme";
+export const theme = myTheme;
+
+<Head>
+  <title>cicd</title>
+  <meta name="description" value="ci/cd lambda preso" />
+</Head>
+
+<Footer>
+  <img
+    src="https://devops2020.com/wp-content/uploads/2019/05/AWS_logo_png.png"
+    style={{
+      position: "absolute",
+      bottom: "10px",
+      right: "10px",
+      height: 80,
+      width: 80,
+    }}
+  />
+</Footer>
+
+<Layout />
+
+<Cover {...presentation} />
+
+<Notes>
+
+ci/cd lambda preso
+
+</Notes>
+
+---
+
+
+<TableOfContents title="Overview" data={presentation.steps} />
+
+---
+
+## cicd
+
+---
+
+<Thanks />

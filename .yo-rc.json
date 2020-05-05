@@ -1,0 +1,17 @@
+{
+  "generator-presogen": {
+    "sharedData": {},
+    "forwardErrorToEnvironment": false,
+    "name": "cicd",
+    "appVersion": "0.0.1",
+    "description": "ci/cd lambda preso",
+    "user": "auser",
+    "author": "Ari Lerner <me@ari.io>",
+    "app-version": "0.0.1",
+    "resolved": "/Users/alerner/Development/infrastructure/mine/presogen/generator-presogen/generators/app/index.js",
+    "namespace": "presogen:app",
+    "_": [],
+    "skip-cache": false,
+    "skip-install": false
+  }
+}

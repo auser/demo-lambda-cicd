@@ -1,0 +1,17 @@
+.Image,
+.image {
+  padding: -50px;
+}
+
+p,
+ul {
+  padding: 0 50px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  padding-left: 50px;
+  padding-right: 50px;
+}

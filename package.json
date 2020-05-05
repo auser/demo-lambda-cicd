@@ -1,0 +1,57 @@
+{
+  "name": "cicd",
+  "version": "0.0.1",
+  "description": "ci/cd lambda preso",
+  "main": "index.js",
+  "presentation": {
+    "title": "cicd",
+    "subtitle": "ci/cd lambda preso",
+    "author": "Ari Lerner &lt;me@ari.io&gt;",
+    "steps": [
+      {
+        "label": "Introduction",
+        "active": true
+      },
+      {
+        "label": "Validation"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "mdx-deck build src/deck.mdx",
+    "help": "mdx-deck",
+    "image": "NODE_ENV=production ./node_modules/.bin/capture-website http://localhost:8000 --output=deck.png",
+    "pdf": "NODE_ENV=production ./node_modules/.bin/website-pdf http://localhost:8000/print -o deck.pdf",
+    "pptx": "NODE_ENV=production NODE_OPTIONS='--max-old-space-size=8096' ./cli.js",
+    "copy:static": "cp -r src/img dist",
+    "start": "mdx-deck src/deck.mdx"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "capture-website-cli": "^0.6.0",
+    "gatsby": "^2.20.18",
+    "mdx-deck": "^4.1.1",
+    "patch-package": "^6.2.2",
+    "pptxgenjs": "^3.1.1",
+    "puppeteer": "^2.1.1",
+    "tempy": "^0.5.0",
+    "theme-ui": "^0.3.1",
+    "website-pdf": "^4.1.0"
+  },
+  "dependencies": {
+    "@mdx-deck/gatsby-plugin": "^4.1.1",
+    "@mdx-deck/themes": "^4.1.0",
+    "chalk": "^4.0.0",
+    "fs-extra": "^9.0.0",
+    "gatsby-plugin-compile-es6-packages": "^2.1.0",
+    "gatsby-source-filesystem": "^2.2.2",
+    "mdx-code": "^2.0.0",
+    "mdx-deck-code-surfer": "^0.5.5",
+    "mdx-deck-live-code": "^1.0.1",
+    "raw-loader": "^4.0.0",
+    "serve-handler": "^6.1.2",
+    "styled-components": "^5.1.0",
+    "styled-system": "^5.1.5"
+  }
+}
