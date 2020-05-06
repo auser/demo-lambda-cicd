@@ -13,7 +13,19 @@
         "active": true
       },
       {
-        "label": "Validation"
+        "label": "Continuous Deployment"
+      },
+      {
+        "label": "Continuous Integration"
+      },
+      {
+        "label": "CloudWatch"
+      },
+      {
+        "label": "Oh the many ways"
+      },
+      {
+        "label": "Best practices"
       }
     ]
   },
