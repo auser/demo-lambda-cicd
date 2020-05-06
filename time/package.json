@@ -6,6 +6,7 @@
   "scripts": {
     "build": "rimraf ./dist && ./node_modules/.bin/tsc",
     "postbuild": "cp package.json dist/package.json && cd dist && npm install --only=production",
+    "cdk": "cdk",
     "deploy": "npm run build && npm run deploy:api",
     "deploy:api": "cd deployment && ./node_modules/.bin/cdk --profile demo-deployer deploy",
     "test": "jest"

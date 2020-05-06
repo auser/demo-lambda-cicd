@@ -63,18 +63,18 @@ export class DeploymentStack extends cdk.Stack {
       apiKeyRequired: false,
     });
 
-    const version = covidRequestHandler.addVersion(
-      new Date().toISOString() + 1
-    );
-    const alias = new lambda.Alias(this, "LambdaAlias", {
-      aliasName: "Prod",
-      version,
-    });
-    new codedeploy.LambdaDeploymentGroup(this, "DeploymentGroup", {
-      alias,
-      deploymentConfig:
-        codedeploy.LambdaDeploymentConfig.LINEAR_10PERCENT_EVERY_1MINUTE,
-    });
+    // const version = covidRequestHandler.addVersion(
+    //   new Date().toISOString() + 1
+    // );
+    // const alias = new lambda.Alias(this, "LambdaAlias", {
+    //   aliasName: "Prod",
+    //   version,
+    // });
+    // new codedeploy.LambdaDeploymentGroup(this, "DeploymentGroup", {
+    //   alias,
+    //   deploymentConfig:
+    //     codedeploy.LambdaDeploymentConfig.LINEAR_10PERCENT_EVERY_1MINUTE,
+    // });
 
     // cdk build
     const cdkBuild = new codebuild.PipelineProject(this, "CdkBuild", {
@@ -83,6 +83,7 @@ export class DeploymentStack extends cdk.Stack {
         phases: {
           install: {
             commands: [
+              "cd time",
               "npm install",
               "npm install cdk",
               "npm install -g typescript",
@@ -91,13 +92,16 @@ export class DeploymentStack extends cdk.Stack {
           build: {
             commands: [
               "npm run build",
-              "./node_modules/.bin/cdk synth -- -o dist",
+              "pwd",
+              "ls -la",
+              "cd ..",
+              "npm run cdk synth -- -o dist",
             ],
           },
         },
         artifacts: {
-          "base-directory": "dist",
-          files: ["LambdaStack.template.json"],
+          "base-directory": "./time/deployment/dist",
+          files: ["DeploymentStack.template.json"],
         },
       }),
       environment: {
@@ -110,14 +114,14 @@ export class DeploymentStack extends cdk.Stack {
         version: "0.2",
         phases: {
           install: {
-            commands: ["ls -la", "pwd", "npm install"],
+            commands: ["cd time", "npm install"],
           },
         },
         build: {
           commands: ["npm run build", "npm test"],
         },
         artifacts: {
-          "base-directory": "deployment",
+          "base-directory": "./time",
           files: ["index.js", "node_modules/**/*"],
         },
       }),
@@ -170,8 +174,10 @@ export class DeploymentStack extends cdk.Stack {
           actions: [
             new codepipeline_actions.CloudFormationCreateUpdateStackAction({
               actionName: "lambda_cfn_deploy",
-              templatePath: cdkBuildOutput.atPath("LambdaStack.template.json"),
-              stackName: "LambdaDeploymentStack",
+              templatePath: cdkBuildOutput.atPath(
+                "DeploymentStack.template.json"
+              ),
+              stackName: "DeploymentStack",
               adminPermissions: true,
               extraInputs: [lambdaBuildOutput],
             }),
