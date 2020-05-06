@@ -6,3 +6,4 @@ deck.pptx
 *.pdf
 .history/
 time/coverage
+time/dist

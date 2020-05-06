@@ -84,12 +84,15 @@ export class DeploymentStack extends cdk.Stack {
           install: {
             commands: [
               "npm install",
-              "npm install -g cdk",
+              "npm install cdk",
               "npm install -g typescript",
             ],
           },
           build: {
-            commands: ["npm run build", "npm run cdk synth -- -o dist"],
+            commands: [
+              "npm run build",
+              "./node_modules/.bin/cdk synth -- -o dist",
+            ],
           },
         },
         artifacts: {
@@ -107,7 +110,7 @@ export class DeploymentStack extends cdk.Stack {
         version: "0.2",
         phases: {
           install: {
-            commands: ["ls -la", "cd deployment", "npm install"],
+            commands: ["ls -la", "pwd", "npm install"],
           },
         },
         build: {
