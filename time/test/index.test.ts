@@ -77,6 +77,11 @@ describe("lambdaService", () => {
       expect(resp.statusCode).toBe(200);
     });
 
+    it("is true, maybe?", async () => {
+      expect.assertions(1);
+      expect(true).toBe(false);
+    });
+
     it("returns data", async () => {
       expect.assertions(1);
       const resp = await handler({
