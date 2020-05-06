@@ -1,6 +1,6 @@
 import { Head, Header, Footer } from "mdx-deck";
 import Highlighter from "react-syntax-highlighter";
-import { Notes, Split, Horizontal, FullScreenCode } from "mdx-deck";
+import { Notes, Split, Horizontal, Code, FullScreenCode } from "mdx-deck";
 import { Invert } from "mdx-deck";
 import { CodeSurfer, CodeSurferColumns, Step } from "code-surfer";
 import { nightOwl } from "@code-surfer/themes";
@@ -323,9 +323,23 @@ import deploy2 from "./img/deploy2.png";
 
 ---
 
+Let's get a [Personal Access Token from Github](https://github.com/settings/tokens)
+
+(private repo access and webhooks)
+
+---
+
+```bash
+aws --profile demo-deployer secretsmanager \
+        create-secret --name demo-cicd-github-token \
+        --secret-string "[YOUR GITHUB TOKEN]"
+```
+
+---
+
 <CodeSurfer theme={nightOwl}>
 
-```ts 1:5 file="../time/deployment/lib/deployment-stack.ts"
+```ts 1:3 title="Stack" file="../time/deployment/lib/deployment-stack.ts"
 ```
 
 </CodeSurfer>

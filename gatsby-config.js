@@ -4,8 +4,7 @@ const src = process.env.__SRC__;
 const dirname = path.resolve("./src");
 
 module.exports = {
-  plugins: [
-    {
+  plugins: [{
       resolve: "@mdx-deck/gatsby-plugin",
       options: {
         path: src,
@@ -24,6 +23,13 @@ module.exports = {
       options: {
         name: `images`,
         path: `${dirname}/img`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `time`,
+        path: `${dirname}/time`,
       },
     },
     {
