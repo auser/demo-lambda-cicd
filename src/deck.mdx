@@ -20,8 +20,8 @@ import myTheme from "./theme";
 export const theme = myTheme;
 
 <Head>
-  <title>cicd</title>
-  <meta name="description" value="ci/cd lambda preso" />
+  <title>CI/CD</title>
+  <meta name="description" value="ci/cd" />
 </Head>
 
 <Footer>
@@ -48,10 +48,6 @@ export const theme = myTheme;
 ---
 
 <Timeline data={presentation.steps} title="Today's topics" />
-
----
-
-<TableOfContents title="Overview" data={presentation.steps} />
 
 ---
 
@@ -111,6 +107,11 @@ Continuous Delivery is the practice of deploying our application with _every_ (*
 
 ---
 
+<BackgroundImage
+  opacity="20%"
+  src="https://media.giphy.com/media/2g8EYDN0VWFMY/giphy.gif"
+/>
+
 ### But not for 2020
 
 <Appear>
@@ -135,6 +136,11 @@ Forget the risks of big, fat deployments when constantly deploying
 
 ---
 
+<BackgroundImage
+  opacity="20%"
+  src="https://media.giphy.com/media/8tbgksQhlWCJy/giphy.gif"
+/>
+
 - New application components are gradually released
 - Iterate over new pieces of code
 - Deployment cycle is _automated_
@@ -150,13 +156,19 @@ New deployment mechanisms
 
 ### Blue-green
 
+<img
+  src="https://res.cloudinary.com/practicaldev/image/fetch/s--w3h-zsYZ--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://thepracticaldev.s3.amazonaws.com/i/m664yyotixnqncprryf0.png"
+  alt="Blue-green"
+/>
+
 ---
+
+<img
+  src="https://static.packt-cdn.com/products/9781788837866/graphics/8bd6d0a8-43ec-43ca-90e1-2170815b658b.png"
+  alt="A/B Testing"
+/>
 
 ### A/B Testing
-
----
-
-### Red-black deployment
 
 ---
 
@@ -179,6 +191,11 @@ Keys to continuous deployment:
 
 ---
 
+<BackgroundImage
+  opacity="20%"
+  src="https://media.giphy.com/media/uTfOt7RT9bMWs/giphy.gif"
+/>
+
 - Monitoring performance
 - Monitoring user interaction
 - Error handling
@@ -197,6 +214,11 @@ Keys to continuous deployment:
 Continuous Integration is the practice of creating automated builds and tests every time we commit a change into our repository.
 
 ---
+
+<BackgroundImage
+  opacity="20%"
+  src="https://media.giphy.com/media/yNs2a0jRkYxy6191B2/giphy.gif"
+/>
 
 Of course, this means we need to write tests
 
@@ -224,6 +246,11 @@ Test driven requires the tests to be written before functional testing, while te
 
 ---
 
+<BackgroundImage
+  opacity="20%"
+  src="https://media.giphy.com/media/s3JaFSpVUKMp2/giphy.gif"
+/>
+
 ### Version control drives deployment
 
 ---
@@ -247,6 +274,11 @@ Commit often and use coverage and fuzzy testing to find edge-cases
 Automate compilation and testing
 
 ---
+
+<BackgroundImage
+  opacity="20%"
+  src="https://media.giphy.com/media/TqiwHbFBaZ4ti/giphy.gif"
+/>
 
 > How does my code break the rest?
 
@@ -288,6 +320,11 @@ Keeping an environment on staging allows us to match production builds with vali
 
 ---
 
+<BackgroundImage
+  src="https://media.giphy.com/media/8myYQ3otu4ipvM8McM/giphy.gif"
+  opacity="40%"
+/>
+
 ## Monitoring
 
 ---
@@ -315,6 +352,11 @@ CloudWatch events can be set to trigger CloudWatch alarms based-upon a baseline 
 We can set up CloudWatch to trigger notifications on duration measurements, throttling, and even custom metrics
 
 ---
+
+<BackgroundImage
+  opacity="30%"
+  src="https://media.giphy.com/media/l3nW1Qum1tgZQwhvq/giphy.gif"
+/>
 
 ### CloudWatch on EC2
 

@@ -82,25 +82,18 @@ export class DeploymentStack extends cdk.Stack {
         version: "0.2",
         phases: {
           install: {
-            commands: [
-              "cd time",
-              "npm install",
-              "npm install cdk",
-              "npm install -g typescript",
-            ],
+            commands: ["cd time", "npm install"],
           },
           build: {
             commands: [
               "npm run build",
-              "pwd",
-              "ls -la",
-              "cd ..",
-              "npm run cdk synth -- -o dist",
+              "cd deployment",
+              "./node_modules/.bin/cdk synth -- -o dist",
             ],
           },
         },
         artifacts: {
-          "base-directory": "./time/deployment/dist",
+          "base-directory": "./time/dist",
           files: ["DeploymentStack.template.json"],
         },
       }),

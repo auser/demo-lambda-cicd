@@ -1,12 +1,12 @@
 {
-  "name": "cicd",
+  "name": "CI/CD",
   "version": "0.0.1",
   "description": "ci/cd lambda preso",
   "main": "index.js",
   "presentation": {
-    "title": "cicd",
+    "title": "CI/CD",
     "subtitle": "ci/cd lambda preso",
-    "author": "Ari Lerner",
+    "author": "AWS Innovation",
     "steps": [
       {
         "label": "Introduction",
@@ -22,10 +22,7 @@
         "label": "CloudWatch"
       },
       {
-        "label": "Oh the many ways"
-      },
-      {
-        "label": "Best practices"
+        "label": "Monitoring"
       }
     ]
   },
