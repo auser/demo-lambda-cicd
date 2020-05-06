@@ -63,7 +63,9 @@ export class DeploymentStack extends cdk.Stack {
       apiKeyRequired: false,
     });
 
-    const version = covidRequestHandler.addVersion(new Date().toISOString());
+    const version = covidRequestHandler.addVersion(
+      new Date().toISOString() + 1
+    );
     const alias = new lambda.Alias(this, "LambdaAlias", {
       aliasName: "Prod",
       version,
@@ -105,7 +107,7 @@ export class DeploymentStack extends cdk.Stack {
         version: "0.2",
         phases: {
           install: {
-            commands: ["cd deployment", "npm install"],
+            commands: ["ls -la", "cd deployment", "npm install"],
           },
         },
         build: {
